@@ -1,0 +1,22 @@
+.App-h1{
+    color: green;
+}
+.WordGame-restart{
+    margin-top: 35px;
+    padding: 15px;
+    border-radius: 5px;
+    color: green;
+    border-radius: 5px;
+}
+.Word-h4{
+    color: red;
+}
+.WordGame-alphabets{
+    background-color: lightblue;
+    height: 40px;
+    width: 40px;
+    margin: 2px;
+    color: black;
+    border-radius: 50%;
+    border:white ;
+}
