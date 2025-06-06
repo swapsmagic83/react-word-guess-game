@@ -4,15 +4,36 @@ import axios from 'axios'
 
 const WordGame = () =>{
     const alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-    const words = ['apple','grape','orange','plum','peach'];
+    // const words = ['apple','grape','orange','plum','peach'];
+    const [words,setWords] = useState([])
     const [guessedChars,setGuessedChars] = useState([]);
     const [count,setCount] = useState(0);
-    const getRandomWord = ()=>{
-        let random = Math.floor(Math.random()*words.length);
-        return words[random]
-    }
-    const [word,setWord] = useState(getRandomWord())
+    const [err,setErr] = useState('');
+    const [word,setWord] = useState('')
+   
+    useEffect(()=>{
+        const getWords = async () => {
+            try {
+                const res = await axios.get('https://random-word-api.vercel.app/api?words=10')
+                setWords(res.data)
+                setWord(res.data[ Math.floor(Math.random()*res.data.length)])
+            }
+            catch (err){
+                setErr(err)
+            }
+        }
+        getWords()
+    },[])
+
+    // const getRandomWord = ()=>{
+    //     let random = Math.floor(Math.random()*words.length);
+    //     return words[random]
+    // }
+    // const [word,setWord] = useState(getRandomWord())
+    
     const isGameOver = count >= word.length *2;
+    
+    
     
     const handleClick = (e) =>{
         const guessedChar = e.target.value.toLowerCase();
@@ -25,10 +46,13 @@ const WordGame = () =>{
         }
     }
 
-    const restart = () =>{
+    const restart = async() =>{
         setCount(0)
         setGuessedChars([])
-        setWord(getRandomWord())
+        // setWord(getRandomWord())
+        const res = await axios.get('https://random-word-api.vercel.app/api?words=10')
+            setWords(res.data)
+            setWord(res.data[ Math.floor(Math.random()*res.data.length)])
     }
    
     return (
