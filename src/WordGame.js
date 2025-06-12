@@ -6,7 +6,6 @@ import axios from 'axios'
 const WordGame = () =>{
     const alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
     // const words = ['apple','grape','orange','plum','peach'];
-    const [words,setWords] = useState([])
     const [guessedChars,setGuessedChars] = useState([]);
     const [count,setCount] = useState(0);
     const [err,setErr] = useState('');
@@ -16,9 +15,8 @@ const WordGame = () =>{
     useEffect(()=>{
         const getWords = async () => {
             try {
-                const res = await axios.get('https://random-word-api.vercel.app/api?words=10')
-                setWords(res.data)
-                setWord(res.data[ Math.floor(Math.random()*res.data.length)])
+                const res = await axios.get('https://random-word-api.vercel.app/api?words=1')
+                setWord(res.data[0])
             }
             catch (err){
                 setErr(err)
@@ -33,8 +31,6 @@ const WordGame = () =>{
     // const [word,setWord] = useState(getRandomWord())
     
     const isGameOver = count > word.length *2 || (word.split('')).every((char)=>guessedChars.includes(char));
-    
-    
     
     const handleClick = (e) =>{
         const guessedChar = e.target.value.toLowerCase();
@@ -51,9 +47,8 @@ const WordGame = () =>{
         setCount(0)
         setGuessedChars([])
         // setWord(getRandomWord())
-        const res = await axios.get('https://random-word-api.vercel.app/api?words=10')
-            setWords(res.data)
-            setWord(res.data[ Math.floor(Math.random()*res.data.length)])
+        const res = await axios.get('https://random-word-api.vercel.app/api?words=1')
+            setWord(res.data[0])
     }
    
     return (
