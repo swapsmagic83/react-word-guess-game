@@ -20,3 +20,14 @@
     border-radius: 50%;
     border:white ;
 }
+.Word-h1{
+    color: blue;
+}
+.Home-btn{
+    color: blue;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: lightgray;
+    border: 1px solid blue;
+}

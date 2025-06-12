@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import { useNavigate } from 'react-router-dom';
 import Word from "./Word";
 import axios from 'axios'
 
@@ -11,6 +12,7 @@ const WordGame = () =>{
     const [err,setErr] = useState('');
     const [word,setWord] = useState('')
    
+    const navigate = useNavigate();
     useEffect(()=>{
         const getWords = async () => {
             try {
@@ -24,14 +26,13 @@ const WordGame = () =>{
         }
         getWords()
     },[])
-
     // const getRandomWord = ()=>{
     //     let random = Math.floor(Math.random()*words.length);
     //     return words[random]
     // }
     // const [word,setWord] = useState(getRandomWord())
     
-    const isGameOver = count >= word.length *2;
+    const isGameOver = count > word.length *2 || (word.split('')).every((char)=>guessedChars.includes(char));
     
     
     
@@ -57,7 +58,7 @@ const WordGame = () =>{
    
     return (
         <div>
-
+            <button onClick={()=>navigate('/')}>Back To Home</button>
             <div>
                 <Word  word={word} guessedChars={guessedChars} count={count}/>    
             </div>
