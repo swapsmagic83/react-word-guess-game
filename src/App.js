@@ -17,9 +17,7 @@ function App() {
         <Route path="/word" element={<WordGame />} />
         <Route path="/wordhint" element={<WordHintGame />} />
       </Routes>
-      </BrowserRouter>
-       {/* <WordGame />
-      <WordHintGame />  */}
+      </BrowserRouter> 
     </div>
   );
 }

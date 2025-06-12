@@ -13,7 +13,6 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Welcome to the Word Hint Game</h1>
       <button className="Home-btn" onClick={handleStartWordGame}> Hard Word Game</button>
       <button className="Home-btn" onClick={handleStartWordHintGame}>Easy Word Game </button>
     </div>
